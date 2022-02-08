@@ -3,6 +3,9 @@ export const server = "http://localhost:4444";
 const apiList = {
   login: `${server}/auth/login`,
   signup: `${server}/auth/signup`,
+  sendOTP: `${server}/auth/mobile/send-otp`,
+  verifyOTP: `${server}/auth/mobile/verify-otp`,
+  forgotPassword: `${server}/auth/forgot-password`,
   mobilelogin: `${server}/auth/mobilelogin`,
   uploadResume: `${server}/upload/resume`,
   uploadProfileImage: `${server}/upload/profile`,

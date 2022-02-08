@@ -37,6 +37,8 @@ import Signup from './auth/Signup';
 import Login from './auth/Login';
 import Terms from './Terms&Conditions/Terms';
 import Privacypolicy from './Terms&Conditions/Privacypolicy';
+import Auth from './auth/Auth';
+
 export const App = () => {
   return (
     <div>
@@ -48,6 +50,7 @@ export const App = () => {
    <Navbar />
    <Routes>
    <Route path="/" exact element={<Home />} />
+   <Route path="/auth" exact element={<Auth />} />
    {/* <Route exact path="/signin" element={<SignIn />} />
    <Route exact path="/signup" element={<SignUp />} /> */}
    <Route exact path="/signin" element={<Login />} />

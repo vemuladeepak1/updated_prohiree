@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+const moment = require('moment')
+const SMS = require("../lib/sms");
 require("mongoose-type-email");
 
 let schema = new mongoose.Schema(
@@ -10,9 +12,8 @@ let schema = new mongoose.Schema(
       lowercase: true,
       required: true,
     },
-    phone:{
-      type:Number,
-      required: true,
+    phone: {
+      type: Number
     },
     password: {
       type: String,
@@ -23,6 +24,9 @@ let schema = new mongoose.Schema(
       enum: ["recruiter", "applicant"],
       required: true,
     },
+
+    otp: Number,
+    validTimeForOTP: String,
   },
   { collation: { locale: "en" } }
 );
@@ -61,6 +65,51 @@ schema.methods.login = function (password) {
       }
     });
   });
+};
+
+function between(min, max) {
+  return Math.floor(
+    Math.random() * (max - min) + min
+  )
+}
+
+schema.methods.setPhoneOTP = function(phone){
+  if (this.phone !== phone) {
+    this.phone = phone;
+  }
+  let otp = between(100000, 999999);
+  this.otp = otp
+  this.validTimeForOTP = moment().add(30, 'minutes');
+  SMS.sentOTP(phone,otp)
+  // Twilio.sendOTP(phone,otp)
+};
+
+function passwordGenerate(length) {
+  var result           = '';
+  var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  var charactersLength = characters.length;
+  for ( var i = 0; i < length; i++ ) {
+    result += characters.charAt(Math.floor(Math.random() * 
+charactersLength));
+ }
+ return result;
+}
+
+//resetPassword
+schema.methods.resetPassword = function(phone){
+  if (this.phone !== phone) {
+    this.phone = phone;
+  }
+  let password = passwordGenerate(6)
+  bcrypt.hash(password, 10, (err, hash) => {
+    if (err) {
+      return next(err);
+    }
+    this.password = hash;
+    console.log('ppp ',hash);
+    SMS.sentPassword(phone,password)
+  });
+  // Twilio.sendOTP(phone,otp)
 };
 
 module.exports = mongoose.model("UserAuth", schema);
