@@ -126,7 +126,7 @@
 } */
 
     .active-tab {
-        z-index: 1;
+        /* z-index: 1; */
      color: #fff;
      background-color: #7e1d7c;
     }
@@ -254,6 +254,16 @@ input[type=number]::-webkit-outer-spin-button {
 .forgot_pass{
     font-size: 17px;
     font-weight: 600;
+}
+
+.verfy-special-btn{
+    position: absolute;
+    margin: 22px 13px !important;
+    top: 0;
+    right: 0;
+    height: 40px !important;
+    padding: 0 !important;
+    width: 100px !important;
 }
 
 /* .main_div

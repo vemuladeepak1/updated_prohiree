@@ -117,10 +117,12 @@ const Navbar = () => {
 
                                     <ul className="navbar-nav ml-auto">
                                         <li className="nav-item">
+                                            <Link to="/auth">
+                                                <button type="button"
+                                                    className="btn  navbar-btn" /*onClick={() => setIsOpen(true)} */><i
+                                                        className="fas fa-user"></i> SIGNUP/SIGNIN</button>
+                                            </Link>
                                             
-                                            <button type="button"
-                                                className="btn  navbar-btn" onClick={() => setIsOpen(true)} ><i
-                                                    className="fas fa-user"></i> SIGNUP/SIGNIN</button>
                                         </li>
                                     </ul>
                                 )
