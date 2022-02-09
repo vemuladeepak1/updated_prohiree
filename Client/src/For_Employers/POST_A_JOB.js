@@ -162,7 +162,7 @@ const POST_A_JOB = (props) => {
                                         </div>
                                         <div className=" col-lg-6 col-md-6">
                                         <div className="form-group">
-                                                <label>Skills</label>
+                                            <label>Technical Skills :</label>
                                                 <ChipInput
                                                     label="Skills"
                                                     variant="outlined"

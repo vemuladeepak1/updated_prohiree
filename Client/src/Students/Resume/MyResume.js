@@ -266,22 +266,16 @@ const getData = () => {
                     <p className="resume_text">
                       {profile.resumeHeadline}
                     </p>
-                    <a className="form-inline">
-                      <p className="location_resume_1">
+                    <div className="row">
+                      <div className="col-md-6">
+                      <p className="location_resume_1 d-block">
                         <span>
                           <i className="fas fa-map-marker-alt marker_icon"></i>
                         </span>{" "}
                         <span className="location_resume">{profile.currentlocation}</span>
                       </p>
-                      <p>
-                        <span>
-                          <i className="fas fa-mobile-alt mobile_icon ml-1"></i>
-                        </span>{" "}
-                        <span className="mobile_resume">{profile.contactNumber}</span>
-                      </p>
-                    </a>
-                    <a className="form-inline">
-                      <p className="location_resume_2">
+
+                      <p className="location_resume_2 d-block">
                         <span>
                           <i class="fas fa-shopping-bag marker_icon"></i>
                         </span>{" "}
@@ -290,19 +284,30 @@ const getData = () => {
                           <span className="location_resume">{profile.experience.experience}</span>:
                           <span className="location_resume">{profile.experience}</span>
                         }
-                        
                       </p>
+                      </div>
+                      <div className="col-md-6">
+                      <p>
+                        <span>
+                          <i className="fas fa-mobile-alt mobile_icon ml-1"></i>
+                        </span>{" "}
+                        <span className="mobile_resume">{profile.contactNumber}</span>
+                      </p>
+
                       <p>
                         <span>
                           <i class="far fa-envelope mobile_icon"></i>
                         </span>{" "}
                         <span className="mobile_resume">
-                         {profile.email}
+                        {profile.email}
                         </span>
                       </p>
-                    </a>
 
-                    <div className="progress-box m-t10">
+                      </div>
+                    </div>
+
+
+                    {/* <div className="progress-box m-t10">
                       <div className="progress-info">
                         Profile Strength (Average)<span>70%</span>
                       </div>
@@ -312,13 +317,13 @@ const getData = () => {
                           role="progressbar"
                         ></div>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="col-lg-3">
+            {/* <div className="col-lg-3">
               <div className="pending_action_resume">
                 <h5 className="pending_action_heading">Pending Action</h5>
                 <p>
@@ -336,7 +341,7 @@ const getData = () => {
                   <span className="pending_action_content">Verify Email</span>
                 </p>
               </div>
-            </div>
+            </div> */}
 
             <div id="Resume_Headline"></div>
           </div>
@@ -364,7 +369,7 @@ const getData = () => {
                 <div className="sidebar" id="sidebar">
                   <a href="#Resume_Headline"> Resume Headline</a>
                   <a href="#ProfileSummary"> Profile Summary</a>
-                  <a href="#Key_skills"> Keyskills</a>
+                  <a href="#KeySkills"> Keyskills</a>
                   <a href="#Employment"> Employement</a>
                   <a href="#Education"> Eductaion</a>
                   <a href="#ITskills"> IT Skills</a>
@@ -492,7 +497,7 @@ const getData = () => {
                     className="modal-dialog modal-dialog-centered modal-lg "
                     role="document"
                   >
-                    <div className="modal-content">
+                    <div className="modal-content" >
                       <div className="modal-header">
                         <h5 className="modal-title" id="exampleModalLabel">
                           Profile Summary
@@ -508,7 +513,7 @@ const getData = () => {
                       </div>
                       <div className="modal-body">
                         <div className="modal_content">
-                          <p className="resume_modal_text">
+                          <p className="resume_modal_text" >
                             Your Profile Summary should mention the highlights
                             of your career and education, what your professional
                             interests are, and what kind of a career you are
@@ -683,13 +688,16 @@ const getData = () => {
                 <p className="job_usa">
                   Oct 2015 to Present (3 years 4 months)
                 </p>
-                <p className="job_usa" id="Education">
+                <p className="job_usa" >
                   Available to join in {employment.months}
                 </p>
                 <p className="job_usa">{employment.designation}</p>
               </>) 
                 })
               }
+              <div id="Education">
+
+              </div>
                 <div
                   className="modal fade"
                   id="employ"
@@ -925,7 +933,7 @@ const getData = () => {
                   Mention your employment details including your current and
                   previous company work experience
                 </p>
-                <div className="education_content_1">
+                <div className="education_content_1" id="ITskills">
                   {
                     profile.education.map((edu)=>{
                       console.log(edu)
@@ -1399,7 +1407,7 @@ const getData = () => {
                 <p className="job_usa" id="ProfileSummary">
                   Dec 2018 to Present (Full Time)
                 </p>
-                <p className="job_usa">Job Board Template</p>
+                <p className="job_usa" id="Accomplishment">Job Board Template</p>
 
                 <div
                   className="modal fade"

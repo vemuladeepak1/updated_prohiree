@@ -29,7 +29,7 @@ import ReactPaginate from 'react-paginate'
           .then((response) => {
             setPageCount(Math.ceil(response.data.length)/perPage)
             console.log(response.data);
-            setJobs(response.data);
+            setJobs(response.data.reverse());
           })
           .catch((err) => {
             console.log(err.response.data);

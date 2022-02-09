@@ -33,7 +33,7 @@ const RecentJobs = () => {
         .then((response) => {
           setPageCount(Math.ceil(response.data.length)/perPage)
           console.log(response.data);
-          setJobs(response.data);
+          setJobs(response.data.reverse());
         })
         .catch((err) => {
           console.log(err.response.data);
@@ -125,12 +125,12 @@ const RecentJobs = () => {
                   
                   <div className="posted_home">
                     <div className="job-type">
-                      <a href="#">
+                      {/* <a href="#">
                         <span>
                           <i className="fas fa-history"></i>
                           {moment(job.dateOfPosting).startOf('day').fromNow() }
                         </span>
-                      </a>
+                      </a> */}
                     </div>
                   </div>
                 </div>

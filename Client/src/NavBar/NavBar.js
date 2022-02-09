@@ -114,9 +114,9 @@ const Navbar = () => {
                                             aria-labelledby="navbarDropdown">
                                             <Link className="dropdown-item" to="/hireandtrain">HireAndTrain <sup className='new_blink_inner'>New</sup></Link>
                                         
-                                            <Link className="dropdown-item"
+                                            {/* <Link className="dropdown-item"
                                                 to="/sellskill">Sell Your Skills  <sup className='new_blink_inner'>New</sup>   </Link>
-                                    
+                                     */}
                                         
                                         </div>
                                     </li>
