@@ -11,7 +11,7 @@ const Sidebar = ()=>{
         localStorage.removeItem("token");
         localStorage.removeItem("type");
         dispatch({type:"CLEAR"})
-        navigate("/signin")
+        navigate("/auth")
   };
 console.log(profile)
   useEffect(() => {
