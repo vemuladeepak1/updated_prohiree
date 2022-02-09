@@ -125,7 +125,6 @@ router.post("/mobile/send-otp", async (req, res) => {
   }
 })
 
-
 router.post("/mobile/verify-otp", async (req, res, next) => {
   User.findOne({ phone: req.body.phone }).then((user) => {
     console.log('uuu ', user);

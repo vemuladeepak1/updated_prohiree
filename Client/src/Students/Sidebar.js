@@ -60,8 +60,8 @@ console.log(profile)
                                     className="fas fa-briefcase"></i> Applied Jobs</NavLink>
                             <NavLink to="/jobalerts"><i
                                     className="far fa-address-card"></i> Job Alert</NavLink>
-                            <NavLink to="/savedjobs"><i
-                                    className="fas fa-random"></i> Saved Jobs</NavLink>
+                            {/* <NavLink to="/savedjobs"><i
+                                    className="fas fa-random"></i> Saved Jobs</NavLink> */}
                             {/* <a href="../../../Company/candidate_profile/cv manager/cv_manager.html"><i className="far fa-address-card"></i> CV Manager</a> */}
                             <NavLink to="/changepassword"><i
                                     className="fas fa-key"></i> Change Password</NavLink>

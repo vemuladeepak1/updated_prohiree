@@ -159,7 +159,7 @@ const Footer = () => {
             <div className="copyright-option">
               <div className="row">
                 <div className="co-text col-md-4">
-                  <p> All rights reserved © 2022 ProHiree</p>
+                  <p> All rights reserved © 2022 PABJobs</p>
                 </div>
                 <div className="co-widget col-md-4">
                   <p className="d-line">

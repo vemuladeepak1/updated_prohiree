@@ -73,7 +73,7 @@ import ReactPaginate from 'react-paginate'
               </div>
               <div className="job-info">
                 <h4>
-                  <Link to="/jobdetailes">
+                  <Link to={`/jobdetailes/${job._id}`}>
                     {job.title}
                   </Link>
                 </h4>
@@ -144,7 +144,7 @@ import ReactPaginate from 'react-paginate'
       }
   <div class="d-flex justify-content-center">
       <ReactPaginate
-      previousLabel="prev"
+      previousLabel="Prev"
       nextLabel="Next"
       breakLabel={"..."}
       breakClassName={"break-me"}

@@ -103,6 +103,23 @@ const Navbar = () => {
                                         <Link className="dropdown-item" to="/skilljobs">Skill Jobs</Link>
                                     </div>
                                 </li>
+                                <li className="nav-item dropdown position-relative d-inline-block">
+                                        <a className="nav-link dropdown-toggle  font-weight-bold" href="#" id="a3" role="button"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{color:state.color}}>
+                                            SERVICES<sup className='new_blink'>New</sup>
+                                        </a>
+
+                                        {/* toggler  changes */}
+                                        <div className="dropdown-menu dropdown-content  d-none position-absolute position-relative ml-4 bg-white rounded"  data-toggle={collapse} data-target={id}
+                                            aria-labelledby="navbarDropdown">
+                                            <Link className="dropdown-item" to="/hireandtrain">HireAndTrain <sup className='new_blink_inner'>New</sup></Link>
+                                        
+                                            <Link className="dropdown-item"
+                                                to="/sellskill">Sell Your Skills  <sup className='new_blink_inner'>New</sup>   </Link>
+                                    
+                                        
+                                        </div>
+                                    </li>
                             </ul>
                             {result ? (
                                 result.type === "recruiter" ?

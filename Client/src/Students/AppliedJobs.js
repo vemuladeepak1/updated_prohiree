@@ -99,7 +99,7 @@ import ReactPaginate from "react-paginate"
                             )}
                               <div class="d-flex justify-content-center">
                         <ReactPaginate
-                        previousLabel="prev"
+                        previousLabel="Prev"
                         nextLabel="Next"
                         breakLabel={"..."}
                         breakClassName={"break-me"}

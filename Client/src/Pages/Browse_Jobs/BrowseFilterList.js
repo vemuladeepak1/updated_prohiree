@@ -4,6 +4,7 @@ import axios from 'axios';
 import apiList from '../../lib/apiList';
 import ReactPaginate from 'react-paginate';
 import ReactLoading from 'react-loading';
+import { toast } from 'react-toastify';
  const BrowseFilterList = () => {
 const [jobs,setJobs]=useState([])
 
@@ -21,7 +22,7 @@ const [jobs,setJobs]=useState([])
        };
 
 useEffect(async()=>{
-   await axios.get(apiList.jobs, {
+   await axios.get(apiList.alljobs, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -33,6 +34,7 @@ useEffect(async()=>{
       })
       .catch((err) => {
         console.log(err.response.data);
+        toast.error(err.response.data.message)
       });
       
     
@@ -935,7 +937,7 @@ useEffect(async()=>{
                     }
                     <div class="d-flex justify-content-center">
                          <ReactPaginate
-                        previousLabel="prev"
+                        previousLabel="Prev"
                         nextLabel="Next"
                         breakLabel={"..."}
                         breakClassName={"break-me"}

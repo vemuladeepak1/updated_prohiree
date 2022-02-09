@@ -126,7 +126,7 @@ console.log(moment(jobs.dateOfPosting).startOf('day').fromNow() )
                                         <button className="home_job_btn mx-1">Node JS</button> */}
                                         <div className="float-right job_details_save">
                                             <a href="#" type="btn" className="job_details_savebtn mx-2"  >Save</a>
-                                            <a href="#" type="btn" className="job_details_applybtn" disabled={result.type === "recruiter"} onClick={(e)=>handleApply(e)}>Apply</a>
+                                            <a href="#" type="btn" className="job_details_applybtn" disabled={result?.type === "recruiter"} onClick={(e)=>handleApply(e)}>Apply</a>
                                         </div>
                                     </div>
                                 </div>

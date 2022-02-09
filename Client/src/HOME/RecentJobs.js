@@ -5,6 +5,7 @@ import axios from 'axios'
 import apiList from "../lib/apiList"
 import ReactPaginate from "react-paginate"
 import ReactLoading from 'react-loading';
+import moment from 'moment';
 const RecentJobs = () => {
     const [jobs,setJobs] = useState([])
 
@@ -58,7 +59,7 @@ const RecentJobs = () => {
     </div>
   </div>
   <div className="row">
-    <div className="col-lg-9">
+    <div className="col-lg-12">
       {
         jobs.length>0?
         currentPosts.map((job)=>{
@@ -126,7 +127,8 @@ const RecentJobs = () => {
                     <div className="job-type">
                       <a href="#">
                         <span>
-                          <i className="fas fa-history"></i> 2 Hour ago{" "}
+                          <i className="fas fa-history"></i>
+                          {moment(job.dateOfPosting).startOf('day').fromNow() }
                         </span>
                       </a>
                     </div>
@@ -145,7 +147,7 @@ const RecentJobs = () => {
       }
        <div class="d-flex justify-content-center">
       <ReactPaginate
-      previousLabel="prev"
+      previousLabel="Prev"
       nextLabel="Next"
       breakLabel={"..."}
       breakClassName={"break-me"}
@@ -159,15 +161,15 @@ const RecentJobs = () => {
       />
       </div>
     </div>
-    <div className="col-lg-3">
-      <div className="sticky-top">
+    {/* <div className="col-lg-3">
+      <div className="sticky-top"> */}
         {/* modification Required */}
-        <div className="member mb-4">
-          <div className="member-box">
+        {/* <div className="member mb-4"> */}
+          {/* <div className="member-box"> */}
             {/* <div className="test-pic round">
               <img src="" alt="" />
             </div> */}
-            <div className="test-matter">
+            {/* <div className="test-matter">
               <p>
                 You’ve made it through the rigorous interview process
                 successfully and the organization has extended you an
@@ -197,8 +199,8 @@ const RecentJobs = () => {
             </a>
           </div>
         </div>
-      </div>
-    </div>
+      </div> */}
+    {/* </div> */}
       
  </div>
 </div>

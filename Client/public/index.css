@@ -686,7 +686,7 @@ ul {
 
 /* ...........sec 1 starts........ */
 #sec1 {
-  background: rgba(0, 0, 0, 0.7) url(./images/sec1img.jpg);
+  background: rgba(0, 0, 0, 0.7);
   /* background: grey; */
   background-position: center;
   background-size: cover;
@@ -789,7 +789,7 @@ input.home_input:focus {
 @media screen and (min-width: 326px) and (max-width: 411px) {
   #sec1 {
     background-position: center;
-    height: 100vh;
+    height: 80vh;
   }
 
   .hm1 {
@@ -818,7 +818,7 @@ input.home_input:focus {
 @media screen and (min-width: 411px) and (max-width: 768px) {
   #sec1 {
     background-position: center;
-    height: 105vh;
+    height: 70vh;
   }
 
   .hm1 {
@@ -847,7 +847,7 @@ input.home_input:focus {
 @media screen and (min-width: 768px) and (max-width: 991px) {
   #sec1 {
     background-position: center;
-    height: 125vh;
+    height: 60vh;
   }
 
   .hm1 {
@@ -898,7 +898,7 @@ input.home_input:focus {
 
   #sec1 {
     background-position: center;
-    height: 100vh;
+    height: 60vh;
   }
 
   .am2 {
@@ -910,7 +910,7 @@ input.home_input:focus {
 
 @media screen and (min-width: 1025px) {
   .hm1 {
-    padding-top: 20vh;
+    padding-top: 10vh;
   }
 
   .hm2 {
@@ -931,7 +931,7 @@ input.home_input:focus {
 
   #sec1 {
     background-position: center;
-    height: 80vh;
+    height: 50vh;
   }
 }
 
@@ -4254,8 +4254,8 @@ button.alljob_buttons_sub:focus {
 #search_box_btn_joblocation {
   border: none;
   box-shadow: 2px #6f6f6f;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   background-color: #6a2a69;
   color: #fff;
   margin-right: 45px !important;
@@ -14219,17 +14219,16 @@ input[type="number"]::-webkit-outer-spin-button {
 
 /* clients */
 #clients {
-  padding: 50px 0px;
-  margin: 35px 0px 9px 0px;
-  background: #e7e7e7;
+  margin: 30px 0px;
+  background: #fff;
 }
 .clients_heading {
   font-family: Lato, sans-serif;
-  font-size: 35px;
-  font-weight: 700;
+  font-size: 30px;
+  font-weight: 500;
 }
 .clients_header {
-  padding-bottom: 50px !important;
+  padding-bottom: 20px !important;
 }
 .values {
   padding: 70px 0 60px;
@@ -14247,10 +14246,10 @@ input[type="number"]::-webkit-outer-spin-button {
   height: 12px;
   background-color: #fff;
   opacity: 1;
-  border: 1px solid #1b3b6d;
+  border: 1px solid #1B3B6D;
 }
 .clients .clients-slider .swiper-pagination .swiper-pagination-bullet-active {
-  background-color: #6a2a69;
+  background-color: #6A2A69;
 }
 .item {
   background: none !important;
@@ -14264,7 +14263,6 @@ input[type="number"]::-webkit-outer-spin-button {
 .item img {
   cursor: pointer;
 }
-
 @media screen and (min-width: 1040px) {
   .item img {
     height: 80px !important;
@@ -14297,11 +14295,12 @@ input[type="number"]::-webkit-outer-spin-button {
   .owl-dots {
     display: none;
   }
-  .owl-nav span {
-    color: #000;
-    font-size: 45px !important;
-  }
 }
+
+  .owl-nav{
+    display: none !important;
+  }
+
 @media screen and (min-width: 768px) and (max-width: 990px) {
   .item img {
     height: 80px !important;
@@ -14318,36 +14317,20 @@ input[type="number"]::-webkit-outer-spin-button {
 .owl-nav button {
   margin: 0;
   transition: all 0.3s ease-in-out;
-  background-color: #e7e7e7;
+  background-color: #E7E7E7;
 }
-.owl-nav button.owl-prev {
-  left: -50px;
-  position: absolute;
-  top: 20%;
-}
-.owl-nav button.owl-next {
-  right: -30px;
-  position: absolute;
-  top: 20%;
-}
-@media screen and (min-width: 0px) and (max-width: 991px) {
-  .owl-nav button.owl-prev {
-    left: 0px;
-  }
-  .owl-nav button.owl-next {
-    right: 0px !important;
-  }
-}
-@media screen and (min-width: 0px) and (max-width: 991px) {
+@media screen and (min-width: 0px) and (max-width: 767px) {
   .owl-nav button.owl-prev {
     left: 0px;
     position: absolute;
-    top: 45%;
+    top: 15%;
+    color: #6A2A69;
   }
   .owl-nav button.owl-next {
     right: 0px !important;
     position: absolute;
-    top: 45%;
+    top: 15%;
+    color: #6A2A69;
   }
 }
 .owl-dots {
@@ -14366,20 +14349,21 @@ input[type="number"]::-webkit-outer-spin-button {
 .owl-nav button {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
   background: transparent !important;
 }
 .owl-nav button:hover {
   background: transparent !important;
-  color: #6a2a69 !important;
-}
-.owl-nav span {
-  font-size: 70px;
+  color: #6A2A69 !important;
 }
 .owl-theme .owl-dots .owl-dot.active span,
 .owl-theme .owl-dots .owl-dot:hover span {
-  background: #6a2a69 !important;
+  background: #6A2A69 !important;
 }
+
+.owl-theme .owl-dots {
+display: none !important;
+}
+
 
 /* Clients */
 .modal-backdrop {
@@ -14513,5 +14497,41 @@ option {
   margin-left: 5px;
 }
 
+/* services start */
 
 
+.input {
+  position: relative;
+  width: 100% !important;
+}
+.input__label {
+  position: absolute;
+  left: 18px;
+  top: 16px;
+  transform: translate(0, 0);
+  transform-origin: 0 0;
+  opacity:1;
+  transition: transform 120ms ease-in;
+  font-weight: lighter;
+  line-height: 1.2;
+  /* padding: 0px 2px; */
+  background: #fff !important;
+  z-index: 1025 !important;
+  color: #65735b ;
+}
+.input__field {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+}
+.form_hire:focus
+{
+border:1px solid #6a2a69 !important; 
+border-radius: 5px ;  
+} 
+.input__field:focus ~ .input__label, .input__field:not(:placeholder-shown) + .input__label {
+  transform: translate(1px, -130%) scale(0.7) !important;
+}     
+.input__field:focus + .form_control{
+  z-index: -1024 !important;
+}

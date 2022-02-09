@@ -38,6 +38,7 @@ import Login from './auth/Login';
 import Terms from './Terms&Conditions/Terms';
 import Privacypolicy from './Terms&Conditions/Privacypolicy';
 import Auth from './auth/Auth';
+import HireAndTrain from './NavBar/Services/HireAndTrain';
 
 export const App = () => {
   return (
@@ -60,7 +61,7 @@ export const App = () => {
    <Route exact path="/myresume" element={<MyResume />} />
    <Route exact path="/appliedjobs" element={<AppliedJobs />} />
   <Route exact path="/jobalerts" element={<JobAlerts />} />
-  <Route exact path="/savedjobs" element={<SavedJobs />} />
+  {/* <Route exact path="/savedjobs" element={<SavedJobs />} /> */}
   <Route exact path ="/changepassword" element={<ChangePassword />} />
   <Route exact path="/company_profile" element={<COMPANY_PROFILE />} />
   <Route exact path="/Manage_jobs" element={<Manage_Jobs />} />
@@ -74,6 +75,7 @@ export const App = () => {
   <Route exact path="/designationjobs" element={<DesignationJobs />} />
   <Route exact path="/categoryjobs" element={<CategoryJobs />} />
   <Route exact path="/skilljobs" element={<SkillJobs />} />
+  <Route exact path="/hireandtrain" element={<HireAndTrain />} />
   <Route exact path="/locationaljobs" element={<LocationalJobs />} />
   <Route exact path="/password" element={<Password />} />
   <Route exact path="/updatepost/:id" element={<Updatepost />} />

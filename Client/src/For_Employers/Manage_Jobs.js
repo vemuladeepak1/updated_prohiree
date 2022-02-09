@@ -142,7 +142,7 @@ export const Manage_Jobs = () => {
                                     </table>
                                     <div class="d-flex justify-content-center">
                                     <ReactPaginate
-                                    previousLabel="prev"
+                                    previousLabel="Prev"
                                     nextLabel="Next"
                                     breakLabel={"..."}
                                     breakClassName={"break-me"}

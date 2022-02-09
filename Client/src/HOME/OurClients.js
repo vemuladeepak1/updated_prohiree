@@ -4,20 +4,24 @@ import OwlCarousel from 'react-owl-carousel';
     const options ={
         loop: true,
              margin: 10,
-             nav: false,
+             nav: true,
              autoplay: true,
              loop: true,
+             autoplayTimeout:500,
              responsive: {
                  0: {
                      items: 1,
                  },
-                 600: {
+                 530: {
+                     items: 2,
+                 },
+                 768 : {
                      items: 3,
                  },
                  1000: {
                      items: 5,
                  }
-              } 
+              }
            }
     return (
         <div>

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
  const AllJobs = () => {
     return (
         <div>
-              <div className="jobs_alljobs">
+        <div className="jobs_alljobs">
         <div className="heading_pic_alljobs w-100 text-white  h-100">
             <div className="container">
                 <div className="browse_joblocation_list-search_box">

@@ -66,9 +66,9 @@ const Student_Navbar = () => {
                     <Link className="dropdown-item" to="/jobalerts">
                       Job Alerts
                     </Link>
-                    <Link className="dropdown-item " to="/savedjobs">
+                    {/* <Link className="dropdown-item " to="/savedjobs">
                       Saved Jobs
-                    </Link>
+                    </Link> */}
                     <Link className="dropdown-item" to="/changepassword">
                       Change Password
                     </Link>
