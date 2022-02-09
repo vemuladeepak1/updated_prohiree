@@ -9,15 +9,20 @@ const sentOTP = (phone, otp) => {
 };
 
 const sentPassword = (phone, password) => {
-    axios.get(`https://2factor.in/API/V1/${config.smsAPIKey}/SMS/${phone}/${password}`)
-        .then((response) => {
-            // console.log(response)
-        })
-    // axios.post(`https://2factor.in/API/V1/${config.smsAPIKey}/ADDON_SERVICES/SEND/TSMS`, {
-    //     From: "ABCD",
-    //     To: phone,
-    //     Msg: `Your new password is ${password}`
-    // })
+    // axios.get(`https://2factor.in/API/V1/${config.smsAPIKey}/SMS/${phone}/${password}`)
+    //     .then((response) => {
+    //         // console.log(response)
+    //     })
+    axios.post(`https://2factor.in/API/V1/${config.smsAPIKey}/ADDON_SERVICES/SEND/TSMS`, {
+        From: "PABSPL",
+        To: phone,
+        TemplateName: 'Forgot password',
+        VAR2: password
+    }).then((res) => {
+        console.log('SMS send', res.data);
+    }).catch((err) => {
+        console.log('Error ',err);
+    })
 };
 
 const sentVerificationOTP = (phone) => {
