@@ -5,6 +5,8 @@ const apiList = {
   signup: `${server}/auth/signup`,
   sendOTP: `${server}/auth/mobile/send-otp`,
   verifyOTP: `${server}/auth/mobile/verify-otp`,
+  contactSendOTP: `${server}/auth/contact-verification/send-otp`,
+  contactVerifyOTP: `${server}/auth/contact-verification/verify-otp`,
   forgotPassword: `${server}/auth/forgot-password`,
   mobilelogin: `${server}/auth/mobilelogin`,
   uploadResume: `${server}/upload/resume`,

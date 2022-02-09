@@ -4,7 +4,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import apiList from '../lib/apiList';
+import Modal from 'react-modal';
 import './auth.css'
+
+const customStyles = {
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+    },
+};
 
 const Auth = (props) => {
 
@@ -13,6 +25,12 @@ const Auth = (props) => {
     const [mainTab, setMainTab] = useState('login')
     const [subTab, setSubTab] = useState(false)
     const [phone, setPhone] = useState()
+    const [modalIsOpen, setIsOpen] = useState(false);
+    const [showVerifyBtn, setVerifyBtn] = useState(false);
+    const [contactNumber, setContactNumber] = useState("");
+    const [contactSessionId, setContactSessionId] = useState();
+    const [isContactVerified, setContactVerified] = useState(false);
+
     const navigate = useNavigate();
 
     const switchMainTab = (tab) => {
@@ -52,11 +70,15 @@ const Auth = (props) => {
             e.target.rest()
             return
         }
+        
+        if (!isContactVerified) {
+            toast.error("Contact needs to be verified!")
+        }
         let signupDetails = {
             email: e.target.email.value,
             name: e.target.name.value,
             password: e.target.password.value,
-            type: 'applicant',
+            type: e.target.type.value,
             contactNumber: e.target.contactNumber.value,
         }
         axios
@@ -139,6 +161,65 @@ const Auth = (props) => {
                 toast.success("New password send to your number")
                 console.log(response);
                 setSubTab(false)
+            })
+            .catch((err) => {
+                toast.error(err.response.data.message)
+                console.log(err.response);
+            });
+    }
+
+    const handleContactInput = (e) => {
+        let value = e.target.value
+        setContactNumber(value)
+        setContactVerified(false)
+        if (!value || value.trim() === "") {
+            setVerifyBtn(false)
+            return "contactNumber number is Required";
+        } else if (!value.match(/^[6-9]\d{9}$/)) {
+            setVerifyBtn(false)
+            return "Enter a valid contactNumber number.";
+        } else {
+            setVerifyBtn(true)
+        }
+    }
+
+    const handleContactVerify = () => {
+        let otpDetails = {
+            phone: contactNumber,
+        }
+        axios
+            .post(apiList.contactSendOTP, otpDetails)
+            .then((response) => {
+                // localStorage.setItem("token", response.data.token);
+                // localStorage.setItem("type", response.data.type);
+                // dispatch({ type: "USER", payload: response.data })
+                setIsOpen(true)
+                setContactSessionId(response.data.sessionId)
+                console.log(response);
+            })
+            .catch((err) => {
+                toast.error(err.response.data.message)
+                console.log(err.response);
+            });
+    }
+
+    const handleContactOTPVerify = (e) => {
+        console.log('contactSessionId',contactSessionId);
+        e.preventDefault()
+        let otpDetails = {
+            sessionId: contactSessionId,
+            otp: e.target.otp.value
+        }
+        axios
+            .post(apiList.contactVerifyOTP, otpDetails)
+            .then((response) => {
+                // localStorage.setItem("token", response.data.token);
+                // localStorage.setItem("type", response.data.type);
+                // dispatch({ type: "USER", payload: response.data })
+                setIsOpen(false)
+                toast.success("Contact Verified")
+                setContactSessionId()
+                setContactVerified(true)
             })
             .catch((err) => {
                 toast.error(err.response.data.message)
@@ -247,28 +328,28 @@ const Auth = (props) => {
                                         {subTab === 'otp' && (
                                             <div id="Menu3">
                                                 <form onSubmit={handleOTPSend}>
-                                                <div className="input_group">
-                                                    <input
-                                                        type="number"
-                                                        className="input"
-                                                        placeholder="Enter Mobile Number"
-                                                        name="phone"
-                                                    />
-                                                </div>
-                                                <a href="#" onclick="toggleVisibility('Menu4');">
-                                                    {" "}
-                                                    <input
-                                                        type="submit"
-                                                        className="btn"
-                                                        defaultValue="Get OTP"
-                                                    />
-                                                </a>
-                                                <div className="not_mem">
-                                                    <a href="#" onClick={() => setSubTab(false)}>
+                                                    <div className="input_group">
+                                                        <input
+                                                            type="number"
+                                                            className="input"
+                                                            placeholder="Enter Mobile Number"
+                                                            name="phone"
+                                                        />
+                                                    </div>
+                                                    <a href="#" onclick="toggleVisibility('Menu4');">
                                                         {" "}
-                                                        <label> Login With Email</label>
+                                                        <input
+                                                            type="submit"
+                                                            className="btn"
+                                                            defaultValue="Get OTP"
+                                                        />
                                                     </a>
-                                                </div>
+                                                    <div className="not_mem">
+                                                        <a href="#" onClick={() => setSubTab(false)}>
+                                                            {" "}
+                                                            <label> Login With Email</label>
+                                                        </a>
+                                                    </div>
                                                 </form>
                                             </div>
                                         )}
@@ -306,6 +387,12 @@ const Auth = (props) => {
                                     <div className="form_fild signup_form">
                                         <form onSubmit={handleSignUp}>
                                             <div className="input_group">
+                                                <select class="form-control" name="type">
+                                                    <option value="applicant" selected>Applicant</option>
+                                                    <option value="recruiter">Recruiter</option>
+                                                </select>
+                                            </div>
+                                            <div className="input_group">
                                                 <input
                                                     type="text"
                                                     className="input"
@@ -313,13 +400,18 @@ const Auth = (props) => {
                                                     name="name"
                                                 />
                                             </div>
-                                            <div className="input_group">
+                                            <div className="input_group" style={{ position: 'relative' }}>
+
                                                 <input
                                                     type="text"
                                                     className="input"
                                                     placeholder="Phone Number"
                                                     name="contactNumber"
+                                                    onChange={handleContactInput}
                                                 />
+                                                <button type="button" className="verfy-special-btn btn" onClick={handleContactVerify} disabled={!showVerifyBtn || isContactVerified}>{isContactVerified ? 'Verified': 'Verify'}</button>
+
+
                                             </div>
                                             <div className="input_group">
                                                 <input
@@ -361,6 +453,27 @@ const Auth = (props) => {
                 <div className="col-lg-4 d-none-sm">image</div>
             </div>
         </div>
+        <Modal
+            isOpen={modalIsOpen}
+            onRequestClose={() => setIsOpen(false)}
+            style={customStyles}
+            contentLabel="Example Modal"
+        >
+            <div class="  text-center">
+                <h6>Please enter the one time password <br /> to verify your account</h6>
+                {/* <div> <span>A code has been sent to</span> <small>*******9897</small> </div> */}
+                <form onSubmit={handleContactOTPVerify}>
+                    <div id="otp" class="inputs d-flex flex-row justify-content-center mt-4">
+                        <input type="text" className="form-control w-50" id="exampleInputName" placeholder="Enter OTP" maxLength="6" name="otp" required />
+                    </div>
+                    <div> <button type="submit" class="btn btn-verify px-4 validate mt-4" aria-label="Close" data-dismiss="modal" >Validate</button> </div>
+                </form>
+            </div>
+            <div class="card-2 mt-3">
+                <div class="content d-flex justify-content-center align-items-center"> <span>Didn't get the code</span> <a href="#" class="text-decoration-none ms-3"> Resend</a> </div>
+            </div>
+        </Modal>
+
     </>
 }
 

@@ -148,6 +148,34 @@ router.post("/mobile/verify-otp", async (req, res, next) => {
   }).catch(next);
 })
 
+router.post("/contact-verification/send-otp", async (req, res, next) => {
+  if (!req.body.phone) {
+    return res.status(400).json({ message: 'Phone number is required' })
+  }
+  SMS.sentVerificationOTP(req.body.phone).then((sessionId) => {
+    return res.json({ sessionId, message: "OTP sended"})
+  }).catch(() => {
+    return res.status(400).json({ message: 'OTP not send' })
+  })
+  
+})
+
+router.post("/contact-verification/verify-otp", async (req, res) => {
+  if (!req.body.sessionId) {
+    return res.status(400).json({ message: 'Session ID is required' })
+  }
+  if (!req.body.otp) {
+    return res.status(400).json({ message: 'OTP is required' })
+  }
+  SMS.verifyContact(req.body.sessionId, req.body.otp).then(() => {
+    return res.json({ message: "OTP Verified"})
+  }).catch( errMsg => {
+    return res.status(401).json({ message: errMsg})
+  })
+  
+})
+
+
 router.post("/forgot-password", async (req, res) => {
   const { phone } = req.body;
   let user = await User.findOne({ phone });
