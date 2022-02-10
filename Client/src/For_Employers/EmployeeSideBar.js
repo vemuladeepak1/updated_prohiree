@@ -1,7 +1,15 @@
 import React from 'react'
-import { Link , NavLink } from 'react-router-dom';
-
+import { Link , NavLink, useNavigate } from 'react-router-dom';
+import { useDispatch } from "react-redux";
 export const EmployeeSideBar = () => {
+    const dispatch = useDispatch()
+    const navigate = useNavigate();
+    const handleClick = () => {
+        localStorage.removeItem("token");
+        localStorage.removeItem("type");
+        dispatch({type:"CLEAR"})
+        navigate("/auth")
+  };
     return (
 
 
@@ -36,7 +44,7 @@ export const EmployeeSideBar = () => {
                 <NavLink  to="/password"><i
                         className="fas fa-key"></i> Change Password</NavLink>
 
-                <NavLink to="/"><i className="fas fa-sign-out-alt"></i> Log Out</NavLink>
+                <a onClick={()=>handleClick()}><i className="fas fa-sign-out-alt"></i> Log Out</a>
 
 
             </div>

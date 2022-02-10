@@ -67,8 +67,8 @@ let schema = new mongoose.Schema(
     },
     dateOfPosting: {
       type: Date,
-      default: Date.now,
-    },
+      default: Date.now()
+       },
     deadline: {
       type: Date,
       validate: [

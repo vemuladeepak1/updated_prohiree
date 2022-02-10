@@ -14534,6 +14534,13 @@ option {
 
 
 /* services start */
+.error{
+  padding-left: 10px;
+}
+.hire_group
+{
+  margin-bottom: 0px !important;
+}
 .input {
   position: relative;
   width: 100% !important;

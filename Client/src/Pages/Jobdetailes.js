@@ -14,7 +14,7 @@ export const Jobdetailes = (props) => {
     const result = useSelector(state=>state.data)
     const [descSplit,setDesSplit] = useState([])
     let { id } = useParams();
-console.log(moment(jobs.dateOfPosting).startOf('day').fromNow() )
+
     useEffect(() => {
         getData();
     }, []);
@@ -138,7 +138,10 @@ console.log(moment(jobs.dateOfPosting).startOf('day').fromNow() )
         </div>
         <div className="job_details_posted mx-1">
             <div className="job_posted">
-                <span className="stat mr-3 mt-3"><label className="pr-2">Posted : </label><span>  {moment(jobs.dateOfPosting).startOf('day').fromNow() }</span></span>
+                <span className="stat mr-3 mt-3"><label className="pr-2">Posted : </label><span> 
+                    {/* {moment(jobs.dateOfPosting).startOf('day').fromNow() } */}
+                    {moment.utc(jobs.dateOfPosting).local().startOf('seconds').fromNow()}
+                    </span></span>
                 <span className="stat mr-3"><label  className="pr-2">Openings: </label><span> {jobs.maxPositions}</span></span>
                 <span className="stat mr-3"><label>Job Applicants: </label><span>Less than 10</span></span>
                 <a className="send_like_jobs"><span> Send me jobs likethis </span> </a>

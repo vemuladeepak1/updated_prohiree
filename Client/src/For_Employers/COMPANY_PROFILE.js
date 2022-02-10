@@ -81,7 +81,7 @@ export const COMPANY_PROFILE = () => {
         },
       })
       .then((response) => {
-        
+        console.log(response.data)
         setCompany(response.data);
       })
       .catch((err) => {

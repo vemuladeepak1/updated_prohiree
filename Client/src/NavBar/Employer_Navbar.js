@@ -61,6 +61,9 @@ const Employer_Navbar = () => {
                     <Link className="dropdown-item" to="/Manage_jobs">
                       Manage Jobs
                     </Link>
+                    <Link className="dropdown-item" to="/password">
+                      Change Password
+                    </Link>
                   </div>
                 </li>
                     </ul>

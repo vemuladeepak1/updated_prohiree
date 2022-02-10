@@ -286,7 +286,7 @@ const Auth = (props) => {
                                                     <input type="submit" className="btn" defaultValue="Login" />
                                                     <div className="forgot text-center">
                                                         <a href="#" className="login_otp my-3" onClick={() => setSubTab('otp')}>
-                                                            Login With Otp{" "}
+                                                            Login With OTP{" "}
                                                         </a>
                                                     </div>
                                                     <div className="not_mem pt-3">

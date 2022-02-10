@@ -5,6 +5,7 @@ import apiList from '../../lib/apiList';
 import ReactPaginate from 'react-paginate';
 import ReactLoading from 'react-loading';
 import { toast } from 'react-toastify';
+import moment from 'moment';
  const BrowseFilterList = () => {
 const [jobs,setJobs]=useState([])
 
@@ -30,7 +31,7 @@ useEffect(async()=>{
       .then((response) => {
         setPageCount(Math.ceil(response.data.length)/perPage)
         console.log(response.data);
-        setJobs(response.data)
+        setJobs(response.data.reverse())
       })
       .catch((err) => {
         console.log(err.response.data);
@@ -908,7 +909,8 @@ useEffect(async()=>{
                                             <ul>
                                                 <li><i className="fas fa-map-marker-alt"></i>Hyderabad</li>
                                                 <li><i className="far fa-bookmark"></i>{job.jobType}</li>
-                                                <li><i className="far fa-clock"></i>Published 1 hour ago</li>
+                                                <li><i className="far fa-clock"></i>Published { " "}
+                                                {moment.utc(job.dateOfPosting).local().startOf('seconds').fromNow()} </li>
                                             </ul>
                                         </div>
                                     </div>

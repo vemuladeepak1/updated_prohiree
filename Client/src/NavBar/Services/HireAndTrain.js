@@ -3,7 +3,7 @@ import emailjs from "emailjs-com";
 import axios from "axios";
 import ChipInput from "material-ui-chip-input";
 import OwlCarousel from "react-owl-carousel";
-
+import { TagsInput } from "react-tag-input-component";
 
 
 // import { TagsInput } from 'react-tag-input-component'
@@ -19,6 +19,52 @@ const Result = () => {
 };
 
 const HireAndTrain = () => {
+
+  const [hireandtraindetails, setHireandtraindetails] = useState({
+    name: "",
+    email: "",
+    phone: "",
+  });
+
+  const [errors, setErrors] = useState({
+    name: "",
+    email: "",
+    phone: "",
+  });
+
+  const validate = (name, value) => {
+    switch (name) {
+      case "name":
+        if (!value || value.trim() === "") {
+          return "*Name is Required";
+        } else {
+          return "";
+        }
+      case "email":
+        if (!value) {
+          return "*Email is Required";
+        } else if (
+          !value.match(/^\w+([.-]?\w+)@\w+([.-]?\w+)(\.\w{2,3})+$/)
+        ) {
+          return "Enter a valid email address";
+        } else {
+          return "";
+        }
+      case "phone":
+        if (!value || value.trim() === "") {
+          return "*Contact Number is Required";
+        } else if (!value.match(/^[6-9]\d{9}$/)) {
+          return "Enter Valid Phone Number";
+        } else {
+          return "";
+        }
+
+      default: {
+        return " ";
+      }
+    }
+  };
+
 
   const services = {
     loop: true,
@@ -50,32 +96,43 @@ const HireAndTrain = () => {
   const [graduation, setgraduation] = useState("");
   const [passedout, setpassedout] = useState("");
   const [location, setlocation] = useState("");
-  const [skills, setskills] = useState([]);
+  const [skills, setskills] = useState("");
   const [message, setmessage] = useState("");
 console.log(skills)
   const sendEmail = (e) => {
     e.preventDefault();
-    // console.log("hello")
+    let validationErrors = {};
+    Object.keys(hireandtraindetails).forEach((name) => {
+      const error = validate(name, hireandtraindetails[name]);
+      if (error && error.length > 0) {
+        validationErrors[name] = error;
+      }
+    });
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
 
-    // emailjs
-    //   .sendForm(
-    //     "service_uylk7sp",
-    //     "template_tawbs7h",
-    //     e.target,
-    //     "user_8z77GuPEKrnfHaLDyodeg"
-    //   )
-    //   .then(
-    //     (result) => {
-    //       console.log(result);
-    //     },
-    //     (error) => {
-    //       console.log(error);
-    //     }
-    //   );
-    // e.target.reset();
-    // showResult(true);
+    emailjs
+      .sendForm(
+        "service_uylk7sp",
+        "template_tawbs7h",
+        e.target,
+        "user_8z77GuPEKrnfHaLDyodeg"
+      )
+      .then(
+        (result) => {
+          console.log(result);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    e.target.reset();
 
-    //   console.log(fullname)
+    showResult(true);
+
+
     const data = {
       Name: name,
       PhoneNumber: phone,
@@ -86,24 +143,35 @@ console.log(skills)
       Skills: skills,
       Message: message,
     };
-    console.log(data)
-    // axios
-    //   .post(
-    //     "https://sheet.best/api/sheets/b8f02c3d-f6bf-4d1a-be06-6a6e793dfd7f",
-    //     data
-    //   )
-    //   .then((res) => {
-    //     console.log(res);
-    //     setFullName("");
-    //     setphone("");
-    //     setmail("");
-    //     setgraduation("");
-    //     setpassedout("");
-    //     setlocation("");
-    //     setskills("");
-    //     setmessage("");
-    //   });
+    axios
+      .post(
+        "https://sheet.best/api/sheets/b8f02c3d-f6bf-4d1a-be06-6a6e793dfd7f",
+        data
+      )
+      .then((res) => {
+        console.log(res);
+        setFullName("");
+        setphone("");
+        setmail("");
+        setgraduation("");
+        setpassedout("");
+        setlocation("");
+        setskills("");
+        setmessage("");
+      });
   };
+
+  const formHandling = (e) => {
+    setHireandtraindetails({
+      ...hireandtraindetails,
+      [e.target.name]: e.target.value,
+    });
+    setErrors({
+      ...errors,
+      [e.target.name]: validate(e.target.name, e.target.value),
+    });
+  };
+
 
   return (
     <div>
@@ -163,7 +231,7 @@ console.log(skills)
                     <i className="fas fa-check d-inline"></i>{" "}
                     <span className="d-inline">
                       {" "}
-                      CLient requirement based software and interpersonal skilltraining.
+                      Client requirement based software and interpersonal skill training.
                     </span>
                   </div>
 
@@ -171,7 +239,7 @@ console.log(skills)
                     <i className="fas fa-check d-inline"></i>{" "}
                     <span className="d-inline">
                       {" "}
-                      Virtual / Classroom batches for 8 - 10 weeks at our location
+                      Virtual / Classroom batches at our location
                     </span>
                   </div>
 
@@ -179,7 +247,7 @@ console.log(skills)
                     <i className="fas fa-check d-inline"></i>{" "}
                     <span className="d-inline">
                       {" "}
-                      At location- 4 week, real time training OTJ(ON-THE-JOB) training.
+                      At location, real time training OTJ(ON-THE-JOB) training.
                     </span>
                   </div>
                 </div>
@@ -197,7 +265,7 @@ console.log(skills)
                     <i className="fas fa-check d-inline"></i>{" "}
                     <span className="d-inline">
                       {" "}
-                      Post assessment evaluation proposed to client for fianl round of selection. 
+                      Post assessment evaluation proposed to client for final round of selection. 
                     </span>
                   </div>
 
@@ -236,49 +304,66 @@ console.log(skills)
                 <form action="#" onSubmit={sendEmail}>
                   <div className="row">
                     <div className=" col-lg-12 col-md-12">
-                      <div className="form-group">
+                      <div className="form-group hire_group">
                         <label>Your Name :</label>
                         <label className="input mt-1 mb-2">
                           <input
                             className="input__field form_control form_hire"
                             type="text"
                             name="name"
-                            onChange={(e) => setFullName(e.target.value)}
                             value={name}
+                            onChange={(e) => {
+                              setFullName(e.target.value);
+                              formHandling(e);
+                            }}
+                            // onChange={(e) => formHandling(e)}
+
                             placeholder=" "
                           />
                           <span className="input__label">Enter Your Name</span>
                         </label>
                       </div>
                     </div>
+                    <div className="text-danger error mb-4">{errors.name}</div>
 
                     <div className=" col-lg-12 col-md-12">
-                      <div className="form-group">
+                      <div className="form-group hire_group">
                         <label>Email :</label>
                         <label className="input mt-1 mb-2">
                           <input
                             className="input__field form_control form_hire"
                             type="email"
                             name="email"
-                            onChange={(e) => setmail(e.target.value)}
                             value={email}
+                            onChange={(e) => {
+                              setmail(e.target.value);
+                              formHandling(e);
+                            }}
+                            // onChange={(e) => formHandling(e)}
+
                             placeholder=" "
                           />
                           <span className="input__label">Enter Your Email</span>
                         </label>
                       </div>
                     </div>
+                    <div className="text-danger error mb-4">{errors.email}</div>
 
                     <div className="col-lg-12">
-                      <div className="form-group">
+                      <div className="form-group hire_group">
                         <label>Mobile Number :</label>
                         <label className="input mt-1 mb-2">
                           <input
                             className="input__field form_control form_hire"
-                            type="text"
+                            type="number"
                             name="phone"
-                            onChange={(e) => setphone(e.target.value)}
                             value={phone}
+                            onChange={(e) => {
+                              setphone(e.target.value);
+                              formHandling(e);
+                            }}
+                            // onChange={(e) => formHandling(e)}
+
                             placeholder=" "
                           />
                           <span className="input__label">
@@ -286,6 +371,9 @@ console.log(skills)
                           </span>
                         </label>
                       </div>
+                    </div>
+                    <div className="text-danger error mb-4 ">
+                      {errors.phone}
                     </div>
 
                     <div className="col-lg-12">
@@ -343,59 +431,34 @@ console.log(skills)
                       </div>
                     </div>
 
-                    <div className="col-lg-12">
+                    <div className=" col-lg-12 col-md-12">
                       <div className="form-group">
-                        <label>Technical Skills :</label>
-                        <label className="input mt-1 mb-2">
-                          <input
-                            className="input__field form_control form_hire"
-                            type="text"
-                            name="skills"
-                            onChange={(e) => setskills(e.target.value)}
-                            value={skills}
-                            placeholder=" "
-                          />
-                          <span className="input__label">
-                            Enter your skills
-                          </span>
-                        </label>
+                        <label>Skills:</label>
+                        <input
+                          value={skills}
+                          onChange={(e)=>setskills(e.target.value)}
+                          name="skills"
+                          placeHolder="Enter Your Skills"
+                          className="go309598777"
+                        />
+                        <em style={{ fontSize: "12px" }}>
+                          Press enter to add Skills
+                        </em>
                       </div>
                     </div>
-
-                    {/* <div className="col-lg-12">
-                    <div className="form-group">
-                      <label>Technical Skills :</label>
-                          <ChipInput
-                              label="skills"
-                              variant="outlined"
-                              helperText="Press enter to add skills"
-                              value={skills}
-                              onAdd={(chip) =>
-                                setskills([...skills,chip])
-                              }
-                              onDelete={(chip, index) => {
-                                let skillsets = skills;
-                                skillsets.splice(index, 1);
-                                setskills([skillsets])
-                              }}
-                              fullWidth
-                            />
-                          </div>
-                    </div> */}
-
-
 
                     <div className=" col-lg-12 col-md-12">
                       <div className="form-group">
                         <label>Message :</label>
                         <label className="input mt-1 mb-2">
                           <textarea
-                          rows="7"
+                            rows="7"
                             className="input__field form_control form_hire"
                             type="text"
                             name="message"
                             onChange={(e) => setmessage(e.target.value)}
                             value={message}
+                            maxLength={500}
                             placeholder=" "
                           />
                           <span className="input__label">

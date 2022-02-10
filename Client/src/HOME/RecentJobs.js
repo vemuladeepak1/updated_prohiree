@@ -63,6 +63,15 @@ const RecentJobs = () => {
       {
         jobs.length>0?
         currentPosts.map((job)=>{
+        //  const dateOfPosting=()=> {
+        //   const date =new Date(job.dateOfPosting).toLocaleString('en-US', {
+        //     timeZone: 'Asia/Calcutta'})
+        //     console.log(date)
+        //     return( <span>
+        //       <i className="fas fa-history"></i>
+        //       {moment(date).startOf('day').fromNow() }
+        //     </span>)
+        // }
           return(<>
           <ul className="job-post">
         <li>
@@ -125,12 +134,19 @@ const RecentJobs = () => {
                   
                   <div className="posted_home">
                     <div className="job-type">
-                      {/* <a href="#">
+                      <a href="#">
                         <span>
-                          <i className="fas fa-history"></i>
-                          {moment(job.dateOfPosting).startOf('day').fromNow() }
-                        </span>
-                      </a> */}
+                                <i className="fas fa-history"></i>
+                                {/* {moment(job.dateOfPosting)
+                                .subtract(
+                                  moment(job.dateOfPosting).utcOffset(), 
+                                  'minutes')
+                                .utc()
+                                } */}{" "}
+                                {moment.utc(job.dateOfPosting).local().startOf('seconds').fromNow()}
+                                {/* {moment(job.dateOfPosting).startOf('minutes').fromNow() } */}
+                              </span>
+                      </a>
                     </div>
                   </div>
                 </div>

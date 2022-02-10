@@ -35,7 +35,9 @@ const POST_A_JOB = (props) => {
         description: '',
         salary: '',
         skillsets:[],
-        cities:[]
+        cities:[],
+    
+          
 
     })
 
